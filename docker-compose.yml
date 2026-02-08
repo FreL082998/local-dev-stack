@@ -5,20 +5,20 @@ services:
     image: mysql:8.4.7
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: test
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: Abc@12345
-      MYSQL_USER: xampp
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
       - ./docker/mysql:/docker-entrypoint-initdb.d
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - "3306:3306"
+      - "${MYSQL_PORT}:${MYSQL_PORT}"
     networks:
-      - xampp
+      - system
 
 networks:
-  xampp:
+  system:
     driver: bridge
