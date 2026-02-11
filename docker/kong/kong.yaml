@@ -1,0 +1,26 @@
+_format_version: "3.0"
+
+services:
+  # Meilisearch (http://localhost:7700 via Kong at /meili)
+  - name: meilisearch-service
+    url: http://meilisearch:7700
+    routes:
+      - name: meilisearch-route
+        paths: ["/meili"]
+        strip_path: false
+
+  # MinIO S3 API (http://localhost:9000 via Kong at /s3)
+  - name: minio-s3-service
+    url: http://minio:9000
+    routes:
+      - name: minio-s3-route
+        paths: ["/s3"]
+        strip_path: false
+
+  # MinIO Console (http://localhost:8900 via Kong at /minio)
+  - name: minio-console-service
+    url: http://minio:8900
+    routes:
+      - name: minio-console-route
+        paths: ["/minio"]
+        strip_path: false
