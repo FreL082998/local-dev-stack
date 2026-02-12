@@ -97,6 +97,20 @@ http://localhost:1337
 
 ---
 
+### **8. MSSQL 2022**
+Relational database engine with preconfigured users and persistent storage.
+
+**Connection:**
+```
+Host: localhost
+Port: 1433
+User: sa
+Password: P4ssW0rD
+Database: master
+```
+
+---
+
 ## 🚀 Getting Started
 
 ### **Start all services**
