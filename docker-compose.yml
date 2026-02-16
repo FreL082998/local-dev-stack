@@ -26,26 +26,6 @@ services:
       retries: 5
       start_period: 15s
 
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: mssql
-    restart: unless-stopped
-    environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "P4ssW0rD"
-      MSSQL_PID: "Developer"
-    ports:
-      - "1433:1433"
-    volumes:
-      - local-mssql:/var/opt/mssql
-      # - ./docker/mssql:/docker-entrypoint-initdb.d:ro
-    healthcheck:
-      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-C", "-S", "localhost,1433", "-U", "sa", "-P", "P4ssW0rD", "-Q", "SELECT 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s
-
   minio:
     image: 'minio/minio:latest'
     container_name: minio
@@ -151,8 +131,6 @@ networks:
 
 volumes:
   local-mysql:
-    driver: local
-  local-mssql:
     driver: local
   local-minio:
     driver: local
